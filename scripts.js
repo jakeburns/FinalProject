@@ -36,8 +36,9 @@ var g = svg.append("g")
                       .classed("state", true)
                       .on("click", function(d){
 
-
-                        return console.log("State clicked", d.properties.NAME)
+                        var header = d3.select("h2")
+                        return header.text("State clicked: " + d.properties.NAME)
+                        // console.log("State clicked", d.properties.NAME)
 
                       })
 
@@ -81,7 +82,7 @@ var g = svg.append("g")
                   	.enter()
                   	.append("circle")
                    .attr("cx",function(d) { return projection([d["Longitude"],d["Latitude"]])[0];})
-   .attr("cy",function(d) { return projection([d["Longitude"],d["Latitude"]])[-1];})
+   .attr("cy",function(d) { return projection([d["Longitude"],d["Latitude"]])[1];})
                   	.attr("r", "2.75px")
                   		.attr("fill", "blue")
 
