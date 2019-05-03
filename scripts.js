@@ -18,6 +18,9 @@ Promise.all([geoP, stateP, headquarters, starbucksP]).then(function(values){
 
 var drawMap = function(geo, state, head, star){
   var screen = {width:1000, height: 800};
+  var tooltip = d3.select("body").append("div")
+          .attr("class", "tooltip")
+          .style("opacity", 0);
 
   var projection = d3.geoAlbersUsa().scale(1300).translate([500, 350]);
 var svg = d3.select("svg")
@@ -97,16 +100,25 @@ var svg = d3.select("svg")
                	.enter()
                	.append("circle")
                 .attr("cx",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[0];})
-.attr("cy",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[1];})
-               	.attr("r", "2.75px")
+                .attr("cy",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[1];})
+                  .attr("r", "2.75px")
                		.attr("fill", "yellow")
                   .attr("opacity", "1")
+                  .on("mouseover", function(d) {
+            tooltip.transition()
+            .duration(200)
+            .style("opacity", .9);
+            tooltip.html(d["NAME"])
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+          })
                   function grabUSA(star){
                     return star["Country"] == "US";
                   }
-
+                  var r =  2.75
 
                   function zoomed() {
+
                       states
                         .selectAll('path')
                         .attr('transform', d3.event.transform);
@@ -117,6 +129,7 @@ var svg = d3.select("svg")
 
 
                     }
+
     //   var g = svg.append( "g" );
     //
     //   g.selectAll( "path" )
