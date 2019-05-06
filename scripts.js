@@ -101,14 +101,16 @@ var svg = d3.select("svg")
                	.append("circle")
                 .attr("cx",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[0];})
                 .attr("cy",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[1];})
-                  .attr("r", "2.75px")
+                  .attr("r", function(d){
+                    return d["REVENUES"]/95000
+                  })
                		.attr("fill", "yellow")
                   .attr("opacity", "1")
                   .on("mouseover", function(d) {
             tooltip.transition()
             .duration(200)
             .style("opacity", .9);
-            tooltip.html(d["NAME"])
+            tooltip.html("Company: " + d["NAME"] + "       Revenue (in millions): " + d["REVENUES"])
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
           })
