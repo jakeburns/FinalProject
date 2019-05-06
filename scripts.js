@@ -69,7 +69,7 @@ var svg = d3.select("svg")
           .projection(projection)
 
           states.append("path")
-          .attr("fill", "gray")
+          .attr("fill", "green")
           .attr("stroke", "black")
           .text(function(state){
             return stateDict[state.name]
