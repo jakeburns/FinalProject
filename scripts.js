@@ -207,29 +207,6 @@ var svg = d3.select("svg")
     // .attr( "fill", "black" )
     // .attr( "stroke", "black")
     // .attr( "d", geoPath);
-  function onlyHeadquarters(head){
-      svg = d3.select("svg")
 
-      var bus2 = svg.append("g")
-       bus2.selectAll("circle")
-        .data(head)
-        .enter()
-        .append("circle")
-        .attr("cx",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[0];})
-        .attr("cy",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[1];})
-          .attr("r", function(d){
-            return d["REVENUES"]/65000
-          })
-          .attr("fill", "yellow")
-          .attr("opacity", ".8")
-          .on("mouseover", function(d) {
-      tooltip.transition()
-      .duration(200)
-      .style("opacity", .9);
-      tooltip.html("Company: " + d["NAME"] + "       Revenue (in millions): " + d["REVENUES"])
-      .style("left", (d3.event.pageX) + "px")
-      .style("top", (d3.event.pageY - 28) + "px");
-      })
-    }
 
 }
