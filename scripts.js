@@ -132,6 +132,34 @@ var svg = d3.select("svg")
 
                     }
 
+          var legend = d3.select("#legend")
+          .attr("width", "350")
+
+          var busLegend = legend.append("g").append("circle")
+          .attr("cx", "50")
+          .attr("cy", "50")
+          .attr("r", "8px")
+          .attr("fill", "yellow")
+
+          legend.append("text")
+          .attr("fill", "black")
+          .text("Fortune 500 Headquarter Locations")
+          .attr("x", "65")
+          .attr("y", "55")
+
+          legend.append("text")
+          .attr("fill", "black")
+          .text("Starbucks Locations")
+          .attr("x", "65")
+          .attr("y", "91")
+
+
+          legend.append("circle")
+          .attr("cx", "50")
+          .attr("cy", "85")
+          .attr("r", "8px")
+          .attr("fill", "blue")
+
     //   var g = svg.append( "g" );
     //
     //   g.selectAll( "path" )

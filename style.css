@@ -11,9 +11,15 @@ div.tooltip {
   }
 
   body{
-    background-color: rgb(100,100,75);
+    background-color: rgb(144, 182, 244);
   }
 
 h1, h2{
-  color: white;
+  color: black;
+}
+
+#legend{
+  background-color: rgb(199, 208, 221);
+  position:fixed;
+  left:1000px;
 }
