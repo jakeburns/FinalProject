@@ -69,7 +69,7 @@ var svg = d3.select("svg")
           .projection(projection)
 
           states.append("path")
-          .attr("fill", "green")
+          .attr("fill", "gray")
           .attr("stroke", "black")
           .text(function(state){
             return stateDict[state.name]
@@ -102,10 +102,11 @@ var svg = d3.select("svg")
                 .attr("cx",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[0];})
                 .attr("cy",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[1];})
                   .attr("r", function(d){
-                    return d["REVENUES"]/65000
+                    var revSize = d["REVENUES"]/48000
+                    return revSize
                   })
                		.attr("fill", "yellow")
-                  .attr("opacity", "1")
+                  .attr("opacity", ".8")
                   .on("mouseover", function(d) {
             tooltip.transition()
             .duration(200)
@@ -160,6 +161,43 @@ var svg = d3.select("svg")
           .attr("r", "8px")
           .attr("fill", "blue")
 
+          var button1 = d3.select("body").append("button")
+          .attr("id", "b1")
+          .on("click", function(d){
+            starLocks.attr("opacity", "0")
+            bus.attr("opacity", "1")
+
+          })
+          .text("Show only headquarter locations")
+          var button2 = d3.select("body").append("button")
+          .attr("id", "b2")
+          .on("click", function(d){
+            starLocks.attr("opacity", "1")
+            bus.attr("opacity", "0")
+          })
+          .text("Show only starbucks locations")
+          var button3 = d3.select("body").append("button")
+          .attr("id", "b3")
+          .on("click", function(d){
+            bus.attr("opacity", ".9")
+            starLocks.attr("opacity", ".85")
+          })
+          .text("Show both")
+
+
+
+
+          // var buttonHolder = d3.select("#buttonHolder")
+          // buttonHolder.append("input")
+          // .attr("type","button")
+          // .attr("x", "20")
+          // .attr("y", "50")
+          // .attr("height","100px")
+          // .attr("width","100px")
+          // .attr("fill","black")
+          // .text("TESTING")
+
+
     //   var g = svg.append( "g" );
     //
     //   g.selectAll( "path" )
@@ -169,6 +207,29 @@ var svg = d3.select("svg")
     // .attr( "fill", "black" )
     // .attr( "stroke", "black")
     // .attr( "d", geoPath);
+  function onlyHeadquarters(head){
+      svg = d3.select("svg")
 
+      var bus2 = svg.append("g")
+       bus2.selectAll("circle")
+        .data(head)
+        .enter()
+        .append("circle")
+        .attr("cx",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[0];})
+        .attr("cy",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[1];})
+          .attr("r", function(d){
+            return d["REVENUES"]/65000
+          })
+          .attr("fill", "yellow")
+          .attr("opacity", ".8")
+          .on("mouseover", function(d) {
+      tooltip.transition()
+      .duration(200)
+      .style("opacity", .9);
+      tooltip.html("Company: " + d["NAME"] + "       Revenue (in millions): " + d["REVENUES"])
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY - 28) + "px");
+      })
+    }
 
 }
