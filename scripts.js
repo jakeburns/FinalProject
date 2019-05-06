@@ -102,7 +102,7 @@ var svg = d3.select("svg")
                 .attr("cx",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[0];})
                 .attr("cy",function(d) { return projection([d["LONGITUDE"],d["LATITUDE"]])[1];})
                   .attr("r", function(d){
-                    return d["REVENUES"]/95000
+                    return d["REVENUES"]/65000
                   })
                		.attr("fill", "yellow")
                   .attr("opacity", "1")
