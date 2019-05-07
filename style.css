@@ -40,7 +40,7 @@ h1, h2{
 }
 
 #b3{
-  position: fixed;
+  position: absolute;
   top: 490px;
   right: 493px;
 }
