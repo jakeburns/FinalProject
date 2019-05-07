@@ -15,7 +15,10 @@ div.tooltip {
   }
 
 h1, h2{
-  color: rgb(20, 50, 40);
+  color: white;
+  border: solid black 5px;
+  border-radius: 8px;
+  background: blue;
 }
 
 #legend{
@@ -26,15 +29,21 @@ h1, h2{
 
 #b1{
   position: fixed;
-  top: 320px;
+  top: 430px;
+  right: 475px;
 }
 
 #b2{
   position: fixed;
-  top: 350px;
+  top: 460px;
+  right: 489px;
 }
 
 #b3{
   position: fixed;
-  top: 380px;
+  top: 490px;
+  right: 593px;
+}
+div{
+
 }
